@@ -1,0 +1,239 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #C9C2DF
+    font-family: 'Noto Serif TC', sans-serif;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+}
+
+.main-container {
+    width: 1000px;
+    display: flex;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.left-panel {
+    width: 30%;
+    background-color: #8F84AA;
+    color: #F7EAF1;
+    padding: 2.5em;
+}
+
+.right-panel {
+    width: 70%;
+    background-color: #F7EAF1;
+    padding: 2.5em;
+    overflow-y: auto;
+}
+
+.photo-panel {
+    text-align: center; 
+}
+
+.profile-pic {
+    width: 160px; 
+    height: 160px; 
+    border-radius: 50%; 
+    
+    border: 4px solid white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.name {
+    text-align: center;
+    font-size: 2em; 
+    margin-top: 0.75em;
+    margin-bottom: 0.25em;
+}
+
+.title {
+    text-align: center;
+    font-size: 1.1em;
+    color: #F7EAF1; 
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+
+.section {
+    margin-bottom: 1.5em; 
+}
+
+.section-title {
+    font-size: 1.25em;
+    font-weight: bold;
+    border-bottom: 2px solid #F7EAF1; 
+    padding-bottom: 5px; 
+    margin-bottom: 0.5em; 
+}
+
+.section-content {
+    font-size: 0.9em;
+    line-height: 1.6; 
+    color:  #F7EAF1; 
+}
+
+.contact-list {
+    list-style-type: none; 
+    padding-left: 0;
+    font-size: 0.9em;
+    line-height: 1.7;
+}
+
+.contact-list a {
+    color: #F7EAF1; 
+    text-decoration: none; 
+    word-break: break-all; 
+}
+
+.contact-list a:hover {
+    text-decoration: underline; 
+}
+
+.logo-container {
+    text-align: center;
+    margin-top: 3em;
+    opacity: 0.8; 
+}
+
+.logo-container img {
+    width: 150px;
+    height: 50px;
+}
+
+.right-section {
+    margin-bottom: 2em; /
+}
+
+.right-panel .section-title {
+    font-size: 1.75em; 
+    font-weight: 700;  
+    color: #8F84AA;
+    border-bottom: 2px solid #8F84AA; 
+    
+    
+    padding-bottom: 0.5em; 
+    margin-bottom: 1em;  
+}
+
+.timeline-item {
+    display: flex; 
+    align-items: baseline; 
+    margin-bottom: 0.75em;
+}
+
+.year {
+    font-weight: 700; 
+    color: #8F84AA;
+    flex-basis: 120px;
+    flex-shrink: 0;
+}
+
+.description {
+    font-size: 1em;
+    color: #8F84AA; 
+    flex-grow: 1;
+    margin: 0; 
+    font-family: 'Noto Serif TC', sans-serif;
+}
+
+.tag-container {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 0.75em; 
+}
+
+.tag {
+    padding: 0.5em 1em; 
+    border-radius: 16px; 
+    background-color: #C9C2DF; 
+    color: #F7EAF1; 
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+.hw-lab-container {
+    display: flex; 
+    gap: 1.5em; 
+}
+
+.hw-column,.lab-column {
+    flex: 1; 
+    background-color: #DCD7EB; 
+    padding: 1.5em;
+    border-radius: 8px; 
+}
+
+.hw-column h3,
+.lab-column h3 {
+    margin-top: 0; 
+    margin-bottom: 0.5em;
+    font-size: 1.25em;
+    color: #8F84AA; 
+    border-bottom: 1px solid #8F84AA; 
+    padding-bottom: 0.5em;
+}
+
+.hw-column ul,
+.lab-column ul {
+    list-style-type: none; 
+    padding-left: 0; 
+    margin: 0;
+}
+
+.hw-column a,.lab-column a {
+    text-decoration: none; 
+    color: #3B82F6; 
+    font-weight: 500;
+    line-height: 1.8; 
+}
+
+.hw-column a:hover,.lab-column a:hover {
+    text-decoration: underline; 
+}
+
+.music-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5em;
+    text-align: center;
+}
+
+.music-item {
+    text-decoration: none;
+    color: #8F84AA;
+    transition: transform 0.2s ease;
+}
+
+.music-item:hover {
+    transform: scale(1.05); 
+    color: #F0ABA3; 
+}
+
+.music-item img {
+    width: 100%; 
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px; 
+    margin-bottom: 0.5em; 
+}
+
+.music-item p {
+    font-size: 0.9em;
+    font-weight: 500; 
+    margin: 0; 
+}
+
+.music-note {
+    text-align: center; 
+    margin-top: 2em; 
+    font-family: 'Noto Serif TC', sans-serif;
+    color: #C9C2DF;
+    font-size: 0.9em;
+}
