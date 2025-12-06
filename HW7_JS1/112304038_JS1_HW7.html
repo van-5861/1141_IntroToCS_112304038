@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1A2B Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .input-area {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            gap: 10px;
+        }
+
+        label {
+            font-size: 16px;
+        }
+
+        input {
+            padding: 4px;
+            font-size: 14px;
+            width: 150px;
+            border: 1px solid #aaa;
+        }
+
+        button {
+            padding: 3px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: 1px solid #999;
+            border-radius: 2px;
+        }
+
+        button:hover {
+            background-color: #e0e0e0;
+        }
+
+        #record-area {
+            border: 1px solid #ddd; 
+            padding: 15px;
+            min-height: 200px; 
+        }
+
+        h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        .record-item {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>112304038_HW6_1A2B</h1>
+
+        <div class="input-area">
+            <label for="guessInput">Enter 4 unique numbers</label>
+            <input type="text" id="guessInput" maxlength="4">
+            <button onclick="play()">Guess!</button>
+        </div>
+
+        <div id="record-area">
+            <h3>Game Record :</h3>
+            <div id="recordList"></div>
+        </div>
+    </div>
+
+    <script>
+        var answer = "";
+        var attempts = 0;
+
+        window.onload = function() {
+            answer = generateAnswer();
+            console.log("Cheating: Answer is " + answer); 
+        };
+
+        function generateAnswer() {
+            var nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            var result = "";
+            for (var i = 0; i < 4; i++) {
+                var index = Math.floor(Math.random() * nums.length);
+                result += nums[index];
+                nums.splice(index, 1);
+            }
+            return result;
+        }
+
+        function play() {
+            var inputField = document.getElementById("guessInput");
+            var userGuess = inputField.value;
+
+            if (!isValid(userGuess)) {
+                alert("Invalid Input! 請輸入 4 個不重複的數字。");
+                inputField.value = "";
+                return;
+            }
+
+            attempts++;
+
+            var resultAB = checkAB(userGuess, answer);
+
+            var recordList = document.getElementById("recordList");
+            var newItem = document.createElement("div");
+            newItem.className = "record-item";
+            newItem.innerText = "第" + attempts + "次: " + userGuess + " → " + resultAB;
+            recordList.appendChild(newItem);
+
+            inputField.value = "";
+
+            if (resultAB === "4A0B") {
+                setTimeout(function() {
+                    alert("恭喜答對！你總共猜了 " + attempts + " 次。");
+                }, 100);
+            }
+        }
+
+        function isValid(str) {
+            if (str.length !== 4) return false;
+            if (isNaN(str)) return false;
+            var uniqueCheck = new Set(str);
+            if (uniqueCheck.size !== 4) return false;
+            return true;
+        }
+
+        function checkAB(guess, ans) {
+            var a = 0;
+            var b = 0;
+            for (var i = 0; i < 4; i++) {
+                var digit = guess[i];
+                if (digit === ans[i]) {
+                    a++;
+                } else if (ans.includes(digit)) {
+                    b++;
+                }
+            }
+            return a + "A" + b + "B";
+        }
+    </script>
+</body>
+</html>
