@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>JS Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+
+        .calculator-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 16px;
+            color: #000;
+        }
+
+        .input-group label {
+            text-align: center; 
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #8B5A2B;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #6d4621;
+        }
+
+        #result-area {
+            margin-top: 25px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h1>JS Calculator</h1>
+
+        <div class="input-group">
+            <label for="num1">Number 1</label>
+            <input type="number" id="num1" value="30">
+        </div>
+
+        <div class="input-group">
+            <label for="num2">Number 2</label>
+            <input type="number" id="num2" value="60">
+        </div>
+
+        <div class="input-group">
+            <label for="operator">Operate way?</label>
+            <select id="operator" onchange="updateButtonText()">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+        </div>
+
+        <button id="calcBtn" onclick="calculate()">Add</button>
+
+        <div id="result-area">Result = <span id="resultValue"></span></div>
+    </div>
+
+    <script>
+        function add(a, b) {
+            return a + b;
+        }
+
+        function subtract(a, b) {
+            return a - b;
+        }
+
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        function divide(a, b) {
+            if (b === 0) {
+                return "Error (Div by 0)";
+            }
+            return a / b;
+        }
+
+        function updateButtonText() {
+            var op = document.getElementById("operator").value;
+            var btn = document.getElementById("calcBtn");
+            
+            if (op === "+") btn.innerText = "Add";
+            else if (op === "-") btn.innerText = "Subtract";
+            else if (op === "*") btn.innerText = "Multiply";
+            else if (op === "/") btn.innerText = "Divide";
+        }
+
+        function calculate() {
+            var num1Input = document.getElementById("num1").value;
+            var num2Input = document.getElementById("num2").value;
+            var operator = document.getElementById("operator").value;
+            var resultDisplay = document.getElementById("resultValue");
+
+            if (num1Input === "" || num2Input === "") {
+                alert("Please enter both numbers.");
+                return;
+            }
+
+            var n1 = parseFloat(num1Input);
+            var n2 = parseFloat(num2Input);
+            var result = 0;
+
+            switch (operator) {
+                case "+":
+                    result = add(n1, n2);
+                    break;
+                case "-":
+                    result = subtract(n1, n2);
+                    break;
+                case "*":
+                    result = multiply(n1, n2);
+                    break;
+                case "/":
+                    result = divide(n1, n2);
+                    break;
+            }
+
+            if (typeof result === "string") {
+                resultDisplay.innerText = result;
+            } else {
+                resultDisplay.innerText = result.toFixed(2);
+            }
+        }
+        
+        window.onload = function() {
+            calculate();
+        };
+    </script>
+
+</body>
+</html>
